@@ -1,5 +1,7 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, useColorScheme } from "react-native";
+
+import { itemColors } from "../utils/colors";
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParams } from "../App";
@@ -7,6 +9,8 @@ import { RootStackParams } from "../App";
 type Props = NativeStackScreenProps<RootStackParams, "Bank">;
 
 const Bank: React.FC<Props> = ({ route }) => {
+  const scheme = useColorScheme();
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -15,15 +19,57 @@ const Bank: React.FC<Props> = ({ route }) => {
           style={styles.image}
         />
       </View>
-      <Text style={styles.bankName}>{route.params.bankData.bankName}</Text>
-      <Text style={styles.description}>
+      <Text
+        style={[
+          styles.bankName,
+          {
+            color:
+              scheme === "dark"
+                ? itemColors.textDarkTheme
+                : itemColors.textLightTheme,
+          },
+        ]}
+      >
+        {route.params.bankData.bankName}
+      </Text>
+      <Text
+        style={[
+          styles.description,
+          {
+            color:
+              scheme === "dark"
+                ? itemColors.textDarkTheme
+                : itemColors.textLightTheme,
+          },
+        ]}
+      >
         {route.params.bankData.description}
       </Text>
       <View style={styles.textContainer}>
-        <Text style={styles.age}>
+        <Text
+          style={[
+            styles.age,
+            {
+              color:
+                scheme === "dark"
+                  ? itemColors.textDarkTheme
+                  : itemColors.textLightTheme,
+            },
+          ]}
+        >
           {route.params.bankData.age} años en servicio
         </Text>
-        <Text style={styles.lorem}>
+        <Text
+          style={[
+            styles.lorem,
+            {
+              color:
+                scheme === "dark"
+                  ? itemColors.textDarkTheme
+                  : itemColors.textLightTheme,
+            },
+          ]}
+        >
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum
           molestias iusto cum inventore iure repellendus, ea libero dicta
           laudantium id molestiae consequatur explicabo quidem error ipsa

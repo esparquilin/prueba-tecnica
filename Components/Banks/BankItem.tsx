@@ -7,12 +7,13 @@ import {
   useColorScheme,
 } from "react-native";
 
-
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParams } from "../../App";
 
 import { BankData } from "../../Interfaces/Interfaces";
+
+import { itemColors } from "../../utils/colors";
 
 const BankItem = ({ item }: { item: BankData }) => {
   const scheme = useColorScheme();
@@ -31,7 +32,12 @@ const BankItem = ({ item }: { item: BankData }) => {
       <View
         style={[
           styles.container,
-          { backgroundColor: scheme === "dark" ? "#555" : "#ccc" },
+          {
+            backgroundColor:
+              scheme === "dark"
+                ? itemColors.cardDarkTheme
+                : itemColors.cardLightTheme,
+          },
         ]}
       >
         <View>
@@ -46,8 +52,32 @@ const BankItem = ({ item }: { item: BankData }) => {
         </View>
 
         <View style={styles.textContainer}>
-          <Text style={styles.bankName}>{item.bankName}</Text>
-          <Text style={styles.phrase}>{item.description}</Text>
+          <Text
+            style={[
+              styles.bankName,
+              {
+                color:
+                  scheme === "dark"
+                    ? itemColors.textDarkTheme
+                    : itemColors.textLightTheme,
+              },
+            ]}
+          >
+            {item.bankName}
+          </Text>
+          <Text
+            style={[
+              styles.phrase,
+              {
+                color:
+                  scheme === "dark"
+                    ? itemColors.textDarkTheme
+                    : itemColors.textLightTheme,
+              },
+            ]}
+          >
+            {item.description}
+          </Text>
         </View>
       </View>
     </Pressable>

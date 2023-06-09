@@ -13,3 +13,11 @@ export const colors = {
     backgroundDark: "#333",
   },
 };
+
+export const itemColors = {
+  textLightTheme: "#343a40",
+  textDarkTheme: "#e9ecef",
+
+  cardLightTheme: "#cdcdcd",
+  cardDarkTheme: "#555",
+};

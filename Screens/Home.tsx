@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { ScrollView, Text, StyleSheet } from "react-native";
+import { ScrollView, Text, StyleSheet, useColorScheme } from "react-native";
 import BankList from "../Components/Banks/BankList";
 
 import LoadingScreen from "../Components/ScreenLoader/LoadingScreen";
-import { BankData } from "../Interfaces/Interfaces";
+import { colors, itemColors } from "../utils/colors";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,6 +12,8 @@ const Home = () => {
 
   const [newDataBase, setNewDataBase] = useState("");
   const [dataIsFromDB, setDataIsFromDB] = useState(false);
+
+  const scheme = useColorScheme();
 
   useEffect(() => {
     const getBankData = async () => {
@@ -81,7 +83,16 @@ const Home = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text> Escoge el banco de tu preferecia para ver más detalles</Text>
+      <Text
+        style={{
+          color:
+            scheme === "dark"
+              ? itemColors.textDarkTheme
+              : itemColors.textLightTheme,
+        }}
+      >
+        Escoge el banco de tu preferecia para ver más detalles
+      </Text>
       <BankList bankData={bankData} />
     </ScrollView>
   );
